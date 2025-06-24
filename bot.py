@@ -71,7 +71,6 @@ def log_chat(user_id, user_text, bot_text):
         ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         f.write(f"[{ts}]\nYou: {user_text}\nAI: {bot_text}\n\n")
 
-
 async def query_mistral(user_id, prompt):
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
@@ -80,13 +79,19 @@ async def query_mistral(user_id, prompt):
     data = {
         "model": MODEL_ID,
         "messages": [
-            {"role": "system", "content": "You're a Gen Z assistant with big brother vibes. Be chill, casual, and real. Use **bold**, *italics*, and natural emojis if they add something. No cringe, just smart and helpful."},
+            {"role": "system", "content": "You're a helpful assistant with Gen Z energy and older-bro vibes. Be clear, casual, smart, and only use emojis when they actually add something. Use **bold** or *italic* for emphasis when needed. No cringe. No forced jokes. Just keep it real. Answer shortly"},
             {"role": "user", "content": prompt},
         ],
     }
+
     async with aiohttp.ClientSession() as session:
         async with session.post("https://openrouter.ai/api/v1/chat/completions", json=data, headers=headers) as resp:
             result = await resp.json()
+
+            if "choices" not in result:
+                err = result.get("error", {}).get("message", "❌ Unknown error from OpenRouter")
+                return f"*API Error:* {err}"
+
             return result["choices"][0]["message"]["content"]
 
 
