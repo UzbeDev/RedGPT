@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: redgpt-bot
+    env: python
+    plan: free
+    buildCommand: ""
+    startCommand: python bot.py
+    autoDeploy: true
+    envVars:
+      - key: BOT_TOKEN
+        value: 6677636403:AAGyMB0pgVMXQ8UrSPgGPQL3TjN9nUoSoNo
+      - key: OPENROUTER_API_KEY
+        value: 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
+      - key: MODEL_ID
+        value: mistralai/mistral-7b-instruct:free
