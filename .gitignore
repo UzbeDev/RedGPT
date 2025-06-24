@@ -1,0 +1,43 @@
+# 💡 Python bytecode files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.pyc
+
+# 💡 Virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# 💡 VS Code and other editor settings
+.vscode/
+.idea/
+*.swp
+*.sublime-workspace
+*.sublime-project
+
+# 💡 OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 💡 Environment variables
+.env
+
+# 💡 Log files and chat history
+logs/
+*.log
+memory.json
+*.txt
+
+# 💡 Audio files
+*.ogg
+*.wav
+*.mp3
+
+# 💡 Other generated files
+*.bak
+*.tmp
